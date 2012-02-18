@@ -1,0 +1,5 @@
+*.o
+*.gch
+*.swp
+Makefile
+convex-hull

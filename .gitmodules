@@ -1,0 +1,3 @@
+[submodule "visualization"]
+	path = visualization
+	url = git@github.com:AndreyG/Geometry-Visualization-Library.git
