@@ -6,10 +6,15 @@ QT += opengl
 
 OBJECTS_DIR = bin
 
-QMAKE_CXXFLAGS = -std=c++0x -Wall
+QMAKE_CXXFLAGS = -std=c++11 -Wall
+
+macx {
+    QMAKE_CXXFLAGS += -stdlib=libc++  
+    QMAKE_LFLAGS += -lc++
+}
 
 CONFIG += precompile_header
-PRECOMPILED_HEADER = src/stdafx.h
+PRECOMPILED_HEADER = stdafx.h
 
 DEPENDPATH += src \
               visualization/headers \
@@ -19,12 +24,12 @@ DEPENDPATH += src \
 
 INCLUDEPATH += src \
                visualization/headers \
-               geom \
 
 HEADERS += src/stdafx.h \
            src/viewer.h \
+           src/convex_hull.h \
 
 SOURCES += src/main.cpp \
+           src/convex_hull.cpp \ 
 
-LIBS += -Lgeom -lgeom
 LIBS += -Lvisualization -lvisualization
