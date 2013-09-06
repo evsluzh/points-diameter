@@ -1,5 +1,4 @@
-#ifndef _ANDREWS_H_
-#define _ANDREWS_H_
+#pragma once
 
 #include "geom/primitives/contour.h"
 
@@ -14,4 +13,3 @@ namespace convex_hull {
 
 }}}
 
-#endif
