@@ -14,7 +14,7 @@ macx {
 }
 
 CONFIG += precompile_header
-PRECOMPILED_HEADER = stdafx.h
+PRECOMPILED_HEADER = src/stdafx.h
 
 DEPENDPATH += src \
               visualization/headers \
