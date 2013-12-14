@@ -1,4 +1,4 @@
-Simple visualizer of the convex hull algorithm.
+Simple visualizer of the points diameter algorithm.
 
 Make project: 
     git submodule update &&
@@ -7,7 +7,7 @@ Make project:
     cd ..
     qmake && make
 
-Add point:           double click
-Build convex hull:   press key 'Enter'
-Save points:         press key 'S'
-Load points:         press key 'L'
+Add point:               double click
+Build points diameter:   press key 'Enter'
+Save points:             press key 'S'
+Load points:             press key 'L'
