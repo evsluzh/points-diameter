@@ -3,13 +3,13 @@
 
 #include "io/point.h"
 
-#include "convex_hull.h"
+#include "points_diameter.h"
 
 using namespace visualization;
 using geom::structures::point_type;
 using geom::structures::contour_type;
 
-struct convex_hull_viewer : viewer_adapter
+struct point_diameter_viewer : viewer_adapter
 {
     void draw(drawer_type & drawer)     const;
     void print(printer_type & printer)  const;
@@ -19,10 +19,10 @@ struct convex_hull_viewer : viewer_adapter
 
 private:
     std::vector<point_type>         pts_; 
-    std::unique_ptr<contour_type>   cnt_;
+    std::unique_ptr<segment_type>   cnt_;
 };
 
-void convex_hull_viewer::draw(drawer_type & drawer) const
+void point_diameter_viewer::draw(drawer_type & drawer) const
 {
     drawer.set_color(Qt::blue);
     for (point_type const & pt : pts_)
@@ -31,32 +31,33 @@ void convex_hull_viewer::draw(drawer_type & drawer) const
     if (cnt_)
     {
         drawer.set_color(Qt::red);
-        visualization::draw(drawer, *cnt_);
+        drawer.draw_line(*cnt_);
+//        visualization::draw(drawer, *cnt_);
     }
 }
 
-void convex_hull_viewer::print(printer_type & printer) const
+void point_diameter_viewer::print(printer_type & printer) const
 {
     printer.corner_stream() << "Points num: " << pts_.size() << endl;
-    if (cnt_)
-        printer.corner_stream() <<"Convex hull vertices num: " << cnt_->vertices_num();
+//    if (cnt_)
+//        printer.corner_stream() <<"Convex hull vertices num: " << cnt_->;
 }
 
-bool convex_hull_viewer::on_double_click(point_type const & pt)
+bool point_diameter_viewer::on_double_click(point_type const & pt)
 {
     pts_.push_back(pt);
     cnt_.reset();
     return true;
 }
 
-bool convex_hull_viewer::on_key(int key)
+bool point_diameter_viewer::on_key(int key)
 {
     switch (key)
     {
     case Qt::Key_Return: 
         if (pts_.size() >= 2)
         {
-            cnt_.reset(new contour_type(geom::algorithms::convex_hull::andrews(pts_)));
+            cnt_.reset(new segment_type(geom::algorithms::points_diameter::calc_points_diameter(pts_)));
             return true;
         }
         break;
