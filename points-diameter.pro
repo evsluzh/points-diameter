@@ -1,5 +1,5 @@
 TEMPLATE = app
-TARGET = convex-hull
+TARGET = points-diameter
 
 CONFIG += QtGui
 QT += opengl

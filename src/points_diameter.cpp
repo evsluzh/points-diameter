@@ -42,7 +42,6 @@ namespace points_diameter {
                     next_point = (next_point == n - 1) ? 0 : next_point + 1;
                 }
             }
-            std::cout << "Edge " << i << " Point " << current_point << std::endl;
 
             int32 dx = cur_edge[0].x - hull[current_point].x;
             int32 dy = cur_edge[0].y - hull[current_point].y;
@@ -64,19 +63,6 @@ namespace points_diameter {
                 ans_p2 = ni;
             }
         }
-        std::cout << "ANS =" <<  ans_value << std::endl;
-//        ans_value = 0;
-//        for (int i = 0; i < n; ++i) {
-//            for (int j = 0; j < n; ++j) if (i != j) {
-//                int32 dx = hull[i].x - hull[j].x;
-//                int32 dy = hull[i].y - hull[j].y;
-//                int64 d = (int64)dx * dx + (int64)dy * dy;
-//                if (d > ans_value) {
-//                    ans_value = d;
-//                }
-//            }
-//        }
-//        std::cout << "OPTIMAL =" <<  ans_value << std::endl;
         return segment_type(hull[ans_p1], hull[ans_p2]);
     }
 }
